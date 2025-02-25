@@ -2,7 +2,9 @@
 ## A Novel Framework for Real-Time, Self-Adaptive Large Language Models  
 
 **Authors**: Waseem AlShikh
+\n
 **Date**: February 25, 2025  
+\n
 **Institution**: Writer  
 
 ---
