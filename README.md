@@ -1,11 +1,11 @@
 # Graph-Enhanced Singular Adaptive Learning (GESAL)  
-## A Novel Framework for Real-Time, Self-Adaptive Large Language Models  
+## A Novel Framework for Real-Time, Self-Adaptive Large Language Models\ 
 
-**Authors**: Waseem AlShikh
-\n
-**Date**: February 25, 2025  
-\n
-**Institution**: Writer  
+**Authors**: Waseem AlShikh\
+
+**Date**: February 25, 2025\  
+
+**Institution**: Writer\  
 
 ---
 
