@@ -1,10 +1,10 @@
----
-
 # Graph-Enhanced Singular Adaptive Learning (GESAL)  
 ## A Novel Framework for Real-Time, Self-Adaptive Large Language Models  
 
 **Authors**: Waseem AlShikh 
+
 **Date**: February 25, 2025  
+
 **Institution**: Writer  
 
 ---
@@ -20,12 +20,12 @@ The rapid evolution of large language models (LLMs) has transformed natural lang
 Large language models (LLMs) excel in general tasks but struggle to adapt to individual users without retraining. GESAL addresses this by enabling real-time learning, leveraging efficient adaptation and structured memory.
 
 ### 1.2 Challenges in Current LLM Adaptation
-Full fine-tuning updates all parameters, e.g., \( W \in \mathbb{R}^{m \times n} \), costing \( O(mn) \) memory. PEFT reduces this but lacks dynamic updates. Real-time learning requires stability and memory efficiency, unmet by current methods.
+Full fine-tuning updates all parameters, e.g., $$\( W \in \mathbb{R}^{m \times n} \), costing \( O(mn) \) memory.$$ PEFT reduces this but lacks dynamic updates. Real-time learning requires stability and memory efficiency, unmet by current methods.
 
 ### 1.3 Contributions of GESAL
-- **SVF**: Adapts weights with \( O(r) \) parameters, where \( r = \min(m, n) \).
-- **Graph Storage**: Scales as \( O(|V|) \), where \( |V| \) is the number of tasks.
-- **RL**: Optimizes \( \pi(y|x) \) in real time.
+- **SVF**: Adapts weights with $$\( O(r) \) parameters, where \( r = \min(m, n) \).$$
+- **Graph Storage**: $$Scales as \( O(|V|) \), where \( |V| \) is the number of tasks.$$
+- **RL**: $$Optimizes \( \pi(y|x) \) in real time.$$
 
 ---
 
@@ -35,38 +35,38 @@ Full fine-tuning updates all parameters, e.g., \( W \in \mathbb{R}^{m \times n} 
 Transformer² (Sun et al., 2025) uses pre-trained experts, not real-time learning.
 
 ### 2.2 Parameter-Efficient Fine-Tuning (PEFT)
-LoRA (Hu et al., 2021) updates \( W + \Delta W \), where \( \Delta W = AB \), \( A \in \mathbb{R}^{m \times r} \), \( B \in \mathbb{R}^{r \times n} \). GESAL uses SVF for full-rank adaptation.
+$$LoRA (Hu et al., 2021) updates \( W + \Delta W \), where \( \Delta W = AB \), \( A \in \mathbb{R}^{m \times r} \), \( B \in \mathbb{R}^{r \times n} \). GESAL uses SVF for full-rank adaptation.$$
 
 ### 2.3 Graph-Based Learning Systems
 Graphs store structured data (Zhang et al., 2024). GESAL adapts this for LLM memory.
 
 ### 2.4 Reinforcement Learning in NLP
-RL refines LLMs via \( J(\theta) = \mathbb{E}[\log \pi(y|x) r] \) (Williams, 1992). GESAL applies this dynamically.
+$$RL refines LLMs via \( J(\theta) = \mathbb{E}[\log \pi(y|x) r] \) (Williams, 1992). GESAL applies this dynamically.$$
 
 ---
 
 ## 3. Theoretical Foundations
 
 ### 3.1 Singular Value Decomposition in Neural Networks
-For a weight matrix \( W \in \mathbb{R}^{m \times n} \):
+For a weight matrix $$\( W \in \mathbb{R}^{m \times n} \):$$
 $$
 W = U \Sigma V^T
-$$
-- \( U \in \mathbb{R}^{m \times r} \), \( V \in \mathbb{R}^{n \times r} \): orthogonal matrices.
-- \( \Sigma \in \mathbb{R}^{r \times r} \): diagonal singular values.
-- \( r = \min(m, n) \).
 
-GESAL modifies \( \Sigma \) with \( z \in \mathbb{R}^r \):
-$$
-W' = U (\Sigma \cdot z) V^T
-$$
+-  $$\( U \in \mathbb{R}^{m \times r} \), \( V \in \mathbb{R}^{n \times r} \): orthogonal matrices. $$
+-  $$\( \Sigma \in \mathbb{R}^{r \times r} \): diagonal singular values.$$
+-  $$\( r = \min(m, n) \).$$
+
+$$GESAL modifies \( \Sigma \) with \( z \in \mathbb{R}^r \):$$
+
+$$ W' = U (\Sigma \cdot z) V^T $$
+
 This adjusts the magnitude of each singular component, preserving full expressivity with \( O(r) \) parameters.
 
 ### 3.2 Graph Structures for Knowledge Representation
 A graph \( G = (V, E) \) organizes adaptations:
-- \( V \): Nodes with embeddings \( e_v \in \mathbb{R}^d \) and \( z_v \).
-- \( E \): Edges based on cosine similarity, \( \text{sim}(e_u, e_v) = \frac{e_u \cdot e_v}{\|e_u\| \|e_v\|} \).
-New nodes form if \( \text{sim} < \theta \), where \( \theta \) is a threshold.
+- $$\( V \): Nodes with embeddings \( e_v \in \mathbb{R}^d \) and \( z_v \).$$
+- $$\( E \): Edges based on cosine similarity, \( \text{sim}(e_u, e_v) = \frac{e_u \cdot e_v}{\|e_u\| \|e_v\|} \).$$
+New nodes form if $$ \( \text{sim} < \theta \), where \( \theta \) is a threshold.$$
 
 ### 3.3 Reinforcement Learning for Real-Time Adaptation
 GESAL optimizes:
@@ -109,12 +109,12 @@ Each node \( v \in V \):
 
 ### 4.4 Real-Time Learning Mechanism
 Algorithm:
-1. Embed input \( x \) as \( e_x \).
-2. Find \( v = \arg\min_{u \in V} 1 - \text{sim}(e_x, e_u) \).
-3. If \( \text{dist} > \theta \), create new node.
-4. Apply \( z_v \), generate \( y \).
-5. If \( y \in R_v \) and \( r = -2 \), regenerate.
-6. Buffer \( (x, y, r, v) \); update when full.
+1. Embed input $$\( x \) as \( e_x \).$$
+2. Find $$\( v = \arg\min_{u \in V} 1 - \text{sim}(e_x, e_u) \).$$
+3. If $$\( \text{dist} > \theta \)$$, create new node.
+4. Apply $$\( z_v \), generate \( y \).$$
+5. If $$\( y \in R_v \) and \( r = -2 \), regenerate.$$
+6. Buffer $$\( (x, y, r, v) \); update when full.$$
 
 ### 4.5 Integration and Workflow
 Inference and adaptation alternate, with \( O(1) \) per-input cost and \( O(|V|) \) graph operations.
